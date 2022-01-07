@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+* {
+    --white: #ffffff;
+    --pink: #FF1A55;
+    --violet: #491559;
+    --dark-pink: #C9215A;
+
+    --text-display: bold 24px 'Roboto'; 
+    --text-body: bold 18px 'Roboto'; 
+    --text-light: 14px 'Roboto'; 
+
+    --shadow-samll: 4px 4px 0 var(--violet);
+    --shadow-big: 8px 8px 0 var(--violet);
+
+    --margin-right: 0.5rem !important;
+}

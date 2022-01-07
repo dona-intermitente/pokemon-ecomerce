@@ -1,0 +1,4 @@
+.avatar {
+    box-shadow: var(--shadow-samll);
+    margin-right: var(--margin-right);
+}
