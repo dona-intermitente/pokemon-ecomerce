@@ -2,6 +2,7 @@
 
 * {
     --white: #ffffff;
+    --blue: #2196f3;
     --pink: #FF1A55;
     --violet: #491559;
     --dark-pink: #C9215A;
@@ -13,5 +14,6 @@
     --shadow-samll: 4px 4px 0 var(--violet);
     --shadow-big: 8px 8px 0 var(--violet);
 
+    --margin: 40px;
     --margin-right: 0.5rem !important;
 }

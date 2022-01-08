@@ -1,0 +1,25 @@
+.products {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    margin-bottom: var(--margin);
+    border-radius: 10px;
+    border: 8px solid var(--white);
+    box-shadow: var(--shadow-big);
+}
+
+.card div {
+    padding: 0px !important;
+}
+
+.card img {
+    background-color: var(--blue);
+}
+
+.title {
+    font: var(--text-body);
+    text-align: center;
+}

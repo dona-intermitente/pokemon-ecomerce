@@ -2,9 +2,8 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react';
 import Catalogue from '../components/Catalogue';
 import { pokemons } from '../query/pokemons';
-import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+const User: NextPage = () => {
 	const [dataPokemons,setDataPokemons] = useState([]);
 
 	const getPokemons = async () => {
@@ -17,8 +16,11 @@ const Home: NextPage = () => {
 	},[]);
 
   return (
-    <Catalogue data={dataPokemons}/>
+		<>
+			<p>User</p>
+    		<Catalogue data={dataPokemons}/>		
+		</>
   )
 }
 
-export default Home
+export default User
