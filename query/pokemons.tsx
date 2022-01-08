@@ -14,5 +14,28 @@ export async function pokemons() {
 				}
 			}`
 	})
+
 	return data.pokemons.results
+}
+
+export async function pokemon({name}:any) {
+	const { data } = await client.query({
+		query: gql
+			`query pokemon {
+				pokemon(name:${name}) {
+				  id
+				  name
+				  sprites {
+					front_default
+				  }
+				  types{
+					type{
+					  name
+					}
+				  }
+				}
+			}`
+	})
+
+	return data.pokemon
 }

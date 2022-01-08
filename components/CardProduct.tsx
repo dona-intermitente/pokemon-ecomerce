@@ -4,8 +4,8 @@
 */
 
 import React from 'react';
-import { Card } from 'primereact/card';
 import Image from 'next/image';
+import { Card } from 'primereact/card';
 import Styles from '../styles/CardProduct.module.css'
 
 export default function CardProduct({ name, image }: any) {
@@ -14,11 +14,11 @@ export default function CardProduct({ name, image }: any) {
 	}
 
 	const HeaderCard = ({ url }: any) => (
-		<Image alt="Card" loader={myLoader} src={url} height={500} width={500} layout='responsive' unoptimized priority />
+		<Image alt="Card" loader={myLoader} src={url} height={500} width={500} layout='responsive' unoptimized priority/>
 	)
 
 	return (
-		<Card className={Styles.card} header={<HeaderCard url={image} />}>
+		<Card className={Styles.card} header={<HeaderCard url={image}/>}>
 			<p className={Styles.title}>{name} 15$</p>
 		</Card>
 	)
