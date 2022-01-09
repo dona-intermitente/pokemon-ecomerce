@@ -6,6 +6,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Card } from 'primereact/card';
+import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardProduct.module.css'
 
 export default function CardProduct({ name, image }: any) {
@@ -19,6 +20,7 @@ export default function CardProduct({ name, image }: any) {
 
 	return (
 		<Card className={Styles.card} header={<HeaderCard url={image}/>}>
+			<MyFavorite/>
 			<p className={Styles.title}>{name} 15$</p>
 		</Card>
 	)
