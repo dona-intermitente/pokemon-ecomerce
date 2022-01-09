@@ -1,8 +1,13 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
-    uri: "https://graphql-pokeapi.graphcdn.app/",
+const clientPokemon = new ApolloClient({
+    uri:process.env.NEXT_PUBLIC_POKEMON_API,
     cache: new InMemoryCache(),
 })
 
-export default client;
+const clientUser = new ApolloClient({
+    uri: `${process.env.NEXT_USER_API}/graphql`,
+    cache: new InMemoryCache(),
+})
+
+export { clientPokemon, clientUser}
