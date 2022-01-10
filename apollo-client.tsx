@@ -6,7 +6,7 @@ const clientPokemon = new ApolloClient({
 })
 
 const clientUser = new ApolloClient({
-    uri: `${process.env.NEXT_USER_API}/graphql`,
+    uri: `${process.env.NEXT_PUBLIC_USER_API}/graphql`,
     cache: new InMemoryCache(),
 })
 

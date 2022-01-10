@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { clientPokemon } from "../apollo-client";
+import { clientPokemon, clientUser } from "../apollo-client";
 
 export async function pokemons() {
 	const { data } = await clientPokemon.query({
@@ -38,4 +38,19 @@ export async function pokemon({name}:any) {
 	})
 
 	return data.pokemon
+}
+
+export async function pokemonStock() {
+	const { data } = await clientUser.query({
+		query: gql
+			`query pokemonStock {
+				pokemonStocks(limit:10) {
+				  pokemon_id
+				  cost
+				  quantity
+				}
+			}`
+	})
+	
+	return data.pokemonStocks
 }
