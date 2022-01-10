@@ -16,7 +16,7 @@ const options:NextAuthOptions = {
         try {
           console.log(credentials);
           
-          const { data } = await axios.post(`${process.env.NEXT_PUBLIC_USER_API}/auth/local`, {
+          const {data} = await axios.post(`${process.env.NEXT_PUBLIC_USER_API}/auth/local`, {
             identifier: credentials.email,
             password: credentials.password
           });
