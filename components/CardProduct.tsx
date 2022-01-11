@@ -1,27 +1,28 @@
-/**
- * TODO:
- * - QUITAR EL 15$ DE PRECIO
-*/
-
 import React from 'react';
-import Image from 'next/image';
+import { Image } from 'primereact/image';
+//import Image from 'next/image';
 import { Card } from 'primereact/card';
 import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardProduct.module.css'
+import Link from 'next/link';
 
-export default function CardProduct({ name, image }: any) {
-	const myLoader = ({ src }: any) => {
-		return src
-	}
-
-	const HeaderCard = ({ url }: any) => (
-		<Image alt="Card" loader={myLoader} src={url} height={500} width={500} layout='responsive' unoptimized priority/>
+export default function CardProduct({ name, image, price }: any) {
+	const HeaderCard = ({ url, name, price }: any) => (
+		<Link href={{
+			pathname: '/pokemon/[namePokemon]',
+			query: { namePokemon: name, url, price },
+		}}
+		//as={name}
+		>
+			<a>
+				<Image alt="Card" src={url}/>
+			</a>
+		</Link>
 	)
 
 	return (
-		<Card className={Styles.card} header={<HeaderCard url={image}/>}>
-			<MyFavorite/>
-			<p className={Styles.title}>{name} 15$</p>
+		<Card className={Styles.card} header={<HeaderCard url={image} name={name} price={price} />}>
+			<p className={Styles.title}>{name} {price}$</p>
 		</Card>
 	)
 }

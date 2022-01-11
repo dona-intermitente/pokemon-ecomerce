@@ -1,33 +1,14 @@
 import type { NextPage } from 'next'
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
 import Catalogue from '../components/Catalogue';
-import { pokemons, pokemonStock } from '../query/pokemons';
+import { cardPokemon } from '../query/pokemons';
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+const Home: NextPage = ({pokemon}:any) => {
 	const { data: session, status } = useSession()
-	const [dataPokemons, setDataPokemons] = useState([]);
-	const [dataPokemonStock, setDataPokemonStock] = useState([]);
-
-	const getPokemons = async () => {
-		const pokemon = await pokemons()
-		setDataPokemons(pokemon);
-	}
-
-	const getPokemonStock = async () => {
-		const pokemonstock1 = await pokemonStock()
-		setDataPokemonStock(pokemonstock1);
-		console.log(pokemonstock1)
-	}
-
-	useEffect(() => {
-		getPokemons()
-		getPokemonStock()
-	}, []);
 
 	return (
-		<>
+		<div>
 			<div>
 				{!session && <>
 					Not signed in <br />
@@ -38,9 +19,14 @@ const Home: NextPage = () => {
 					<button onClick={() => signOut()}>Sign out</button>
 				</>}
 			</div>
-			<Catalogue data={dataPokemons} />
-		</>
+			<Catalogue data={pokemon} />
+		</div>
 	)
+}
+
+export const getStaticProps = async () => {
+	const pokemon = await cardPokemon()
+	 return {props:{pokemon:pokemon}}
 }
 
 export default Home

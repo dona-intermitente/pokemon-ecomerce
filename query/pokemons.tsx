@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { clientPokemon, clientUser } from "../apollo-client";
 
-export async function pokemons() {
+async function pokemonsList() {
 	const { data } = await clientPokemon.query({
 		query: gql
 			`query Pokemons{ 
@@ -18,39 +18,44 @@ export async function pokemons() {
 	return data.pokemons.results
 }
 
-export async function pokemon({name}:any) {
+export async function pokemonDetail(name: any) {
 	const { data } = await clientPokemon.query({
 		query: gql
-			`query pokemon {
-				pokemon(name:${name}) {
-				  id
-				  name
-				  sprites {
-					front_default
-				  }
-				  types{
-					type{
-					  name
+			`query Pokemon($name: String!) {
+				pokemon(name:$name) {
+					types{
+						type{
+							name
+						}
 					}
-				  }
 				}
-			}`
+			}`,
+		variables: { name }
 	})
 
 	return data.pokemon
 }
 
-export async function pokemonStock() {
+async function pokemonStock() {
 	const { data } = await clientUser.query({
 		query: gql
-			`query pokemonStock {
+			`query PokemonStock {
 				pokemonStocks(limit:10) {
-				  pokemon_id
-				  cost
-				  quantity
+					pokemon_id
+					cost
+					quantity
 				}
 			}`
 	})
-	
+
 	return data.pokemonStocks
+}
+
+export async function cardPokemon() {
+	const [pokemons, stock] = await Promise.all([pokemonsList(), pokemonStock()])
+	const data = pokemons.map((item: any, index: number) => {
+		const newitem = { ...item, cost: stock[index].cost }
+		return newitem
+	})
+	return data
 }
