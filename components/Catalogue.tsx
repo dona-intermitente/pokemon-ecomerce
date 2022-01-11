@@ -9,6 +9,7 @@ export default function Catalogue({data}:any) {
 			image={item.image}
 			name={item.name}
 			price={item.cost}
+			quantity={item.quantity}
 		/>
 	)
 

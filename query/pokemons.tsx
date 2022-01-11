@@ -18,23 +18,15 @@ async function pokemonsList() {
 	return data.pokemons.results
 }
 
-export async function pokemonDetail(name: any) {
-	const { data } = await clientPokemon.query({
-		query: gql
-			`query Pokemon($name: String!) {
-				pokemon(name:$name) {
-					types{
-						type{
-							name
-						}
-					}
-				}
-			}`,
-		variables: { name }
-	})
-
-	return data.pokemon
-}
+export const POKEMON_TYPE =  gql`query Pokemon($name: String!) {
+    pokemon(name:$name) {
+        types{
+            type{
+                name
+            }
+        }
+    }
+}`
 
 async function pokemonStock() {
 	const { data } = await clientUser.query({
@@ -52,9 +44,12 @@ async function pokemonStock() {
 }
 
 export async function cardPokemon() {
-	const [pokemons, stock] = await Promise.all([pokemonsList(), pokemonStock()])
+	const [pokemons, stock,] = await Promise.all([pokemonsList(), pokemonStock()])
 	const data = pokemons.map((item: any, index: number) => {
-		const newitem = { ...item, cost: stock[index].cost }
+		const newitem = { ...item,
+			cost: stock[index].cost,
+			quantity: stock[index].quantity,
+		}
 		return newitem
 	})
 	return data

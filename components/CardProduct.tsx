@@ -1,27 +1,26 @@
 import React from 'react';
+import Link from 'next/link';
 import { Image } from 'primereact/image';
-//import Image from 'next/image';
 import { Card } from 'primereact/card';
 import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardProduct.module.css'
-import Link from 'next/link';
 
-export default function CardProduct({ name, image, price }: any) {
-	const HeaderCard = ({ url, name, price }: any) => (
+export default function CardProduct({ name, image, price, quantity }: any) {
+	const HeaderCard = () => (
 		<Link href={{
-			pathname: '/pokemon/[namePokemon]',
-			query: { namePokemon: name, url, price },
+			pathname: '/pokemon/[name]',
+			query: { name, image, price, quantity },
 		}}
-		//as={name}
 		>
 			<a>
-				<Image alt="Card" src={url}/>
+				<Image alt="Card" src={image}/>
 			</a>
 		</Link>
 	)
 
 	return (
-		<Card className={Styles.card} header={<HeaderCard url={image} name={name} price={price} />}>
+		<Card className={Styles.card} header={<HeaderCard/>}>
+            <MyFavorite />
 			<p className={Styles.title}>{name} {price}$</p>
 		</Card>
 	)

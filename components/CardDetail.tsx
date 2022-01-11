@@ -3,23 +3,26 @@ import { Image } from 'primereact/image'
 import { Card } from 'primereact/card';
 import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardProduct.module.css'
-import { Button } from 'primereact/button';
+import { useQuery } from '@apollo/client';
+import { POKEMON_TYPE } from '../query/pokemons';
 
-export default function CardDetail({ name, image, price, type, quantity }: any) {
-    const HeaderCard = ({ url }: any) => (
-        <Image alt="Card" src={url} />
+export default function CardDetail({ name, image, price, quantity }: any) {
+    const HeaderCard = () => (
+        <Image alt="Card" src={image} />
     )
 
-    return (
-        <>
-            <Button icon="pi pi-times"/>
-            <Card className={Styles.card} header={<HeaderCard url={image} />}>
-                <MyFavorite />
-                <p className={Styles.title}>{name} {price}</p>
-                <p className={Styles.type}>tipo:{type}</p>
-                <p className={Styles.quantity}>disponibles:{quantity}</p>
-            </Card>
-        </>
+    const { loading, error, data } = useQuery(POKEMON_TYPE, { variables: { name } })
 
+    if (loading) return <p>...Loading</p>
+
+    const type = data?.pokemon.types[0].type.name
+
+    return (
+        <Card className={Styles.card} header={<HeaderCard />}>
+            <MyFavorite />
+            <p className={Styles.title}>{name} {price}$</p>
+            <p className={Styles.type}>tipo: {type}</p>
+            <p className={Styles.quantity}>disponibles: {quantity}</p>
+        </Card>
     )
 }
