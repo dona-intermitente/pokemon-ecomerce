@@ -1,8 +1,7 @@
-import NextAuth, { NextAuthOptions } from 'next-auth'
-/*import { login } from '../../../query/user';*/
 import { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials';
-import axios from 'axios';
+import { login } from '../../../query/user';
 
 const options:NextAuthOptions = {
   providers: [
@@ -16,17 +15,11 @@ const options:NextAuthOptions = {
         try {
           console.log(credentials);
           
-          const {data} = await axios.post(`${process.env.NEXT_PUBLIC_USER_API}/auth/local`, {
-            identifier: credentials.email,
-            password: credentials.password
-          });
-
-          //TODO: cuando logre hacer la mutacion descomento esto
-          /*const { data } = await login(
+          const res = await login(
             credentials.email,
             credentials.password
-          );*/
-
+          );
+          const data = res.data?.login
           console.log(data);
           
           if (data) {
