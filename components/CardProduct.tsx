@@ -13,7 +13,7 @@ export default function CardProduct({ name, image, price, quantity, id, favorite
 	const HeaderCard = () => (
 		<Link href={{
 			pathname: '/pokemon/[name]',
-			query: { name, image, price, quantity },
+			query: { name, image, price, quantity, id },
 		}}
 		>
 			<a>

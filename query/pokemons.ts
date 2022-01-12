@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { clientPokemon, clientUser } from "../apollo-client";
 import { favoriteList } from "./favorites";
+import { shoppingList } from "./shopping";
 
 async function pokemonsList() {
 	const { data } = await clientPokemon.query({
@@ -57,5 +58,12 @@ export async function cardPokemon(user_id:any, token:any) {
 export async function cardPokemonFavorite(user_id:any, token:any) {
 	const cardpokemons = await cardPokemon(user_id, token)
 	const data = cardpokemons.filter((item:any)=> item.favorite_id )
+	return data
+}
+
+export async function cardPokemonShopping(user_id:any, token:any) {
+	const [ cardpokemons, shoppingLists ] = await Promise.all([cardPokemon(user_id, token), shoppingList(user_id, token)]) 
+	const shop = shoppingLists.map((item:any)=> item.pokemon_id )
+	const data = cardpokemons.filter((item:any)=> shop.includes(item.id))
 	return data
 }

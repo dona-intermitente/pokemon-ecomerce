@@ -6,11 +6,11 @@ import CardDetail from '../../components/CardDetail'
 
 const Pokemon: NextPage = () => {
 	const router = useRouter()
-	const { name, image, price, quantity } = router.query
+	const { name, image, price, quantity, id } = router.query
 
 	return (
 		<ApolloProvider client={clientPokemon}>
-			<CardDetail name={name} image={image} price={price} quantity={quantity} />
+			<CardDetail name={name} image={image} price={price} quantity={quantity} id={id} />
 		</ApolloProvider>
 	)
 }
