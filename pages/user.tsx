@@ -25,12 +25,12 @@ const User: NextPage = () => {
 
 	useEffect(() => {
 		getPokemon(user_id, token)
-	}, [favorite])
+	},[])
 
-	const cards = favorite.map((item: any, index: number) =>
+	const Cards = favorite.map((item: any, index: number) =>
 		<Card key={index} className={Styles.card} header={<Image alt="Card" src={item.image} />}>
-			<MyFavorite pokemonId={item.id} favorite_id={item.favorite_id} onChange={() => {getPokemon(user_id, token)} }/>
-			<p className={Styles.title}>{item.name} {item.price}$</p>
+			<MyFavorite pokemonId={item.id} favorite_id={item.favorite_id} onChange={() => {getPokemon(user_id, token)}}/>
+			<p className={Styles.title}>{item.name} {item.cost}$</p>
 		</Card>
 	)
 
@@ -38,7 +38,7 @@ const User: NextPage = () => {
 		<>
 			<SelectButton value={value} options={options} onChange={(e) => setValue(e.value)} />
 			{
-				value == 'MIS COMPRAS' ? <div>compras</div> : <div>{cards}</div>
+				value == 'MIS COMPRAS' ? <div>compras</div> : <div>{Cards}</div>
 			}
 		</>
 	)

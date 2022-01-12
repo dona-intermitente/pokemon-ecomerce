@@ -35,6 +35,7 @@ export async function favoriteAdd(user_id:any, pokemon_id:any, token:any) {
           }
         ){
           userPokemonsFavorite{
+            id
             user_id
             pokemon_id
           }

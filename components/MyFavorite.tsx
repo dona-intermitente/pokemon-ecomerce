@@ -7,18 +7,18 @@ export default function MyFavorite({ pokemonId, favorite_id, onChange }: any) {
     const { data: session } = useSession()
     const [checked, setChecked] = useState(!!favorite_id);
 
-    const change = (e: any) => {
+    const change = async (e: any) => {
         setChecked(e.value)
         const user_id = session?.id
         const pokemon_id = e.target.id
         const token = session?.jwt
-        onChange()
         
         if (e.value) {
-            favoriteAdd(user_id, pokemon_id, token)
+            await favoriteAdd(user_id, pokemon_id, token)
         } else {
-            favoriteRemove(favorite_id, token)
+            await favoriteRemove(favorite_id, token)
         }
+        onChange()
     } 
 
     return (

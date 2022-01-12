@@ -50,7 +50,7 @@ export async function cardPokemon(user_id:any, token:any) {
 			favorite_id: favorites.find((val:any)=> val.pokemon_id == item.id )?.id || null,
 		}
 		return newitem
-	})	
+	}) 
 	return data
 }
 
