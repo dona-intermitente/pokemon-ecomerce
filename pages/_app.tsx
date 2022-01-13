@@ -8,7 +8,7 @@ import { SessionProvider } from 'next-auth/react'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps:{session, ...pageProps} }: AppProps) {
   return (
     <>
       <Head>
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="sales pokemon" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <SessionProvider session={pageProps.session}>
+      <SessionProvider session={session}>
         <Layout>
           <Component {...pageProps} />  
         </Layout>

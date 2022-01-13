@@ -1,0 +1,16 @@
+.buttons {
+    margin-top: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--white);
+    font: var(--text-body);
+    background-color: var(--blue);
+}
+
+.radio {
+    display: none;
+    font: var(--text-body);
+    background-color: var(--blue);
+}

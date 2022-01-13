@@ -5,11 +5,15 @@ import { useSession } from 'next-auth/react';
 import { cardPokemonFavorite, cardPokemonShopping } from '../query/pokemons';
 import Catalogue from '../components/Catalogue';
 import { RadioButton } from 'primereact/radiobutton';
+import Styles from '../styles/User.module.css'
+import StylesCard from '../styles/CardProduct.module.css'
+import { Card } from 'primereact/card';
+import MyFavorite from '../components/MyFavorite';
+import { Image } from 'primereact/image';
 
 const User: NextPage = () => {
 	const { data: session } = useSession()
-	
-	//const [option, setOption] = useState('MIS COMPRAS');
+
 	const options = [{name:'MIS COMPRAS', key:1}, {name:'MIS FAVORITOS', key:2}];
 	
 	const [selectedCategory, setSelectedCategory] = useState(options[0]);
@@ -40,6 +44,7 @@ const User: NextPage = () => {
 		return (
 			<div key={category.key} className="p-field-radiobutton">
 				<RadioButton 
+					className={Styles.radio}
 					inputId={category.key}
 					name="category"
 					value={category}
@@ -50,15 +55,24 @@ const User: NextPage = () => {
 		)
 	})
 
+	const shop = shopping.map((item:any, index:any)=> (
+		<div className={StylesCard.products}>
+			<Card key={index} className={StylesCard.card} header={<Image alt="Card" src={item.image}/>}>
+				<MyFavorite pokemonId={item.id} favorite_id={item.favorite_id} onChange={()=>getFavorites()}/>
+				<h1 className={StylesCard.title}>{item.name} {item.price}$</h1>
+			</Card>
+		</div>
+	))
+
 	return (
 		<>
-			{/*TODO: imitar estilos del boton
-			<SelectButton value={option} options={options} onChange={(e) => setOption(e.value)} />
-			*/}
-			{category}
+			<div className={Styles.buttons}>
+				{category}
+			</div>
 			{
 				selectedCategory.name == 'MIS COMPRAS' ?
-				<Catalogue data={shopping} onChange={()=>{}}/>
+				//<Catalogue data={shopping} onChange={()=>{}}/>
+				shop
 				: <Catalogue data={favorites} onChange={()=>getFavorites()}/>
 			}
 		</>
