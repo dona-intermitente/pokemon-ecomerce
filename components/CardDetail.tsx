@@ -8,8 +8,10 @@ import { POKEMON_TYPE } from '../query/pokemons';
 import { Button } from 'primereact/button';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 
 export default function CardDetail({ name, image, price, quantity, id }: any) {
+	const { data: session } = useSession()
     const router = useRouter()
     const shop = () => {
         router.push({
@@ -36,7 +38,14 @@ export default function CardDetail({ name, image, price, quantity, id }: any) {
                 <p className={Styles.type}>tipo: {type}</p>
                 <p className={Styles.quantity}>disponibles: {quantity}</p>
             </Card>
-            <Button className={Styles.button} label='COMPRAR' onClick={()=>{shop()}} />
+            {
+                session && 
+                <Button className={Styles.button} label='COMPRAR' onClick={()=>{shop()}} />
+            }
+            {
+                !session &&
+                <Button className={Styles.button} label='COMPRAR' onClick={()=>router.push("/login")} />
+            }
         </div>
     )
 }
