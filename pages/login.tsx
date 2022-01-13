@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import Form from '../components/Form';
+import Styles from '../styles/login.module.css'
 
 const Login: NextPage = () => {
     const registerUser = async (event: any) => {
@@ -17,8 +18,8 @@ const Login: NextPage = () => {
     }
 
     return (
-        <>
-            <Form title="ininiar sección" onsubmit={(e:any)=> {registerUser(e)}}>
+        <div className={Styles.content}>
+            <Form title="Inicia seccion" onsubmit={(e:any)=> {registerUser(e)}}>
                 <div>
                     <label htmlFor="email">email</label>
                     <input id="email" name="email" type="email" autoComplete="email" required />
@@ -30,9 +31,9 @@ const Login: NextPage = () => {
             </Form>
             <p>Aun no tienes cuenta</p>
             <Link href="/register">
-                <Button label='Registrate'/>
+                <Button className={Styles.button} label='Registrate'/>
             </Link>
-        </>
+        </div>
     )
 }
 

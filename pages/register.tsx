@@ -2,6 +2,8 @@ import axios from 'axios';
 import type { NextPage } from 'next'
 import Link from 'next/link';
 import { Button } from 'primereact/button';
+import Form from '../components/Form';
+import Styles from '../styles/register.module.css'
 
 const Register: NextPage = () => {
     const registerUser = async (event: any) => {
@@ -22,8 +24,8 @@ const Register: NextPage = () => {
     }
 
     return (
-        <>
-            <form onSubmit={registerUser}>
+        <div className={Styles.content}>
+            <Form title="Registrate" onsubmit={(e:any) => {registerUser(e)}}>
                 <div>
                     <label htmlFor="username">Name</label>
                     <input id="username" name="username" type="text" autoComplete="username" required />
@@ -36,13 +38,12 @@ const Register: NextPage = () => {
                     <label htmlFor="password">password</label>
                     <input id="password" name="password" type="password" autoComplete="password" required />
                 </div>
-                <button type="submit">Register</button>
-            </form>
+            </Form>
             <p>Ya tienes cuenta</p>
             <Link href="/login">
-                <Button label='Ingresa' />
+                <Button className={Styles.button} label='Ingresa' />
             </Link>
-        </>
+        </div>
     )
 }
 

@@ -1,0 +1,18 @@
+.form {
+    text-align: center;
+}
+
+.form div {
+    padding-bottom: 20px;
+}
+
+.form label {
+    margin-right: 20px;
+}
+
+.button {
+    font: var(--text-body);
+    box-shadow: var(--shadow-big);
+    margin-right: var(--margin-right);
+    width: 100%;
+}

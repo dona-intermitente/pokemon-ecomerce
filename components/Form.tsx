@@ -1,13 +1,14 @@
+import { Button } from 'primereact/button';
 import React from 'react';
-import { signIn } from 'next-auth/react';
+import Styles from '../styles/Form.module.css'
 
 export default function Form({ children, title, onsubmit }: any) {
 
     return (
-        <form onSubmit={onsubmit}>
+        <form className={Styles.form} onSubmit={onsubmit}>
             <h1>{title}</h1>
             {children}
-            <button type="submit">enviar</button>
+            <Button  className={Styles.button} label="Enviar" type="submit"/>
         </form>
     )
 }

@@ -1,12 +1,12 @@
-import { ApolloProvider } from '@apollo/client'
+import { useState } from 'react';
 import type { NextPage } from 'next'
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react';
 import { Button } from 'primereact/button'
 import { Dialog } from 'primereact/dialog';
-import { useState } from 'react';
-import Form from '../../../components/Form'
 import { shopping, shoppingadd } from '../../../query/shopping';
+import Form from '../../../components/Form'
+import Styles from '../../../styles/Shopping.module.css'
 
 const Shopping: NextPage = () => {
     const router = useRouter()
@@ -45,26 +45,26 @@ const Shopping: NextPage = () => {
     }
 
     return (
-        <>
-            <Button icon="pi pi-times" onClick={() => close()} />
+        <div className={Styles.content}>
+            <Button className={Styles.close + " p-button-rounded"} icon="pi pi-times" onClick={() => close()} />
             <Form title="Formulario de compra" onsubmit={(e:any) => {shop(e)}}>
                 <div>
-                    <label htmlFor="metodo">pago en USDT</label>
-                    <input id="metodo" name="metodo" type="text" required />
+                    <label htmlFor="usdt">pago en USDT</label>
+                    <p>WALLET: XXXXXXXXXXXXX</p>
                 </div>
                 <div>
-                    <label htmlFor="wallet">password</label>
-                    <input id="wallet" name="wallet" type="text" required />
+                    <label htmlFor="payment">comprobante de pago</label>
+                    <input id="payment" name="payment" type="text" required />
                 </div>
+                <h1>{name} {price}$</h1>
             </Form>
-            <h1>{price}</h1>
             <Dialog visible={confirm} footer={renderFooter} onHide={() => {router.push("/user")}}>
                 <h1>Compra con éxito</h1>
             </Dialog>
             <Dialog visible={error} footer={renderFooter} onHide={() => {router.push("/user")}}>
                 <h1>Ya tienes este producto</h1>
             </Dialog>
-        </>
+        </div>
     )
 }
 
