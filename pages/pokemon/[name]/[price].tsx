@@ -7,10 +7,11 @@ import { Dialog } from 'primereact/dialog';
 import { shopping, shoppingadd } from '../../../query/shopping';
 import Form from '../../../components/Form'
 import Styles from '../../../styles/Shopping.module.css'
+import { quantityUpdate } from '../../../query/pokemons';
 
 const Shopping: NextPage = () => {
     const router = useRouter()
-    const { price, name, image, quantity, id } = router.query
+    const { price, name, image, quantity, id, stock_id } = router.query
 
     const close = () => {
         router.push({
@@ -33,11 +34,14 @@ const Shopping: NextPage = () => {
         const user_id = session?.id
         const pokemon_id = id
         const token = session?.jwt
-        
-        const myPokemons = await shopping(user_id, pokemon_id, token)
+        const quantityFinal = quantity?.toString() || "0" 
 
+        const myPokemons = await shopping(user_id, pokemon_id, token)
+        
         if(!myPokemons.length) {
-            await shoppingadd(user_id, pokemon_id, token)
+            const res:any = await shoppingadd(user_id, pokemon_id, token)
+            const quantityNew = parseInt(quantityFinal) -1
+            await quantityUpdate(stock_id, quantityNew)
             setConfirm(true)
         } else {
             setError(true)

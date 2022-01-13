@@ -32,7 +32,6 @@ const User: NextPage = () => {
 	const getShopping = async () => {
 		const pokemon = await cardPokemonShopping(user_id, token)
 		setShopping(pokemon)
-		console.log(pokemon);
 	}
 
 	useEffect(() => {

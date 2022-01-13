@@ -9,13 +9,13 @@ import { POKEMON_TYPE } from '../query/pokemons';
 import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardDetail.module.css'
 
-export default function CardDetail({ name, image, price, quantity, id }: any) {
+export default function CardDetail({ name, image, price, quantity, id, stock_id }: any) {
 	const { data: session } = useSession()
     const router = useRouter()
     const shop = () => {
         router.push({
             pathname: '/pokemon/[name]/[price]',
-            query: { price, name, image, quantity, id },
+            query: { price, name, image, quantity, id, stock_id },
         })
     }
     

@@ -14,6 +14,7 @@ export default function Catalogue({ data, onChange }: any) {
 			id={item.id}
 			favorite_id={item.favorite_id}
 			onChange={onChange}
+			stock_id={item.stock_id}
 			/>
 	)
 
