@@ -1,11 +1,15 @@
+import { ApolloError } from '@apollo/client';
 import axios from 'axios';
 import type { NextPage } from 'next'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Button } from 'primereact/button';
 import Form from '../components/Form';
+import { register } from '../query/user';
 import Styles from '../styles/Register.module.css'
 
 const Register: NextPage = () => {
+    const router = useRouter()
     const registerUser = async (event: any) => {
         event.preventDefault()
         const { username, email, password } = event.target
@@ -14,13 +18,16 @@ const Register: NextPage = () => {
             email: email.value,
             password: password.value,
         }
-        //TODO: MOSTRAR MENSAGE DE ERROR EN PANTALLA
+
         try {
-            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_USER_API}/auth/local/register`, formData)
-            console.log(data);
+            const res:any = await register(formData)
+            console.log(res);
+            alert("Registro con exito, inicia session")
         } catch (error) {
             console.log(error);
+            alert("Ya estas registrado. INICIA SESSION")
         }
+        router.push("/login")
     }
 
     return (

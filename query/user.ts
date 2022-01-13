@@ -18,3 +18,21 @@ export async function login(email: string, password: string) {
   })
   return data
 }
+
+export async function register(fromData:any) {
+  const data = await clientUser.mutate({
+    mutation: gql
+      `mutation Register($username:String!,$email:String!,$password:String!){
+        register(input: { username: $username, email: $email, password: $password }) {
+          jwt
+          user {
+            username
+            email
+          }
+        }
+      }`,
+    variables: fromData,
+    fetchPolicy: "no-cache"
+  })
+  return data
+}
