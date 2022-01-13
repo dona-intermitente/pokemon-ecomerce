@@ -29,14 +29,14 @@ export default function CardDetail({ name, image, price, quantity, id }: any) {
     const type = data?.pokemon.types[0].type.name
 
     return (
-        <>
+        <div className={Styles.products}>
             <Card className={Styles.card} header={<HeaderCard />}>
                 <MyFavorite />
-                <p className={Styles.title}>{name} {price}$</p>
+                <h1 className={Styles.title}>{name} {price}$</h1>
                 <p className={Styles.type}>tipo: {type}</p>
                 <p className={Styles.quantity}>disponibles: {quantity}</p>
             </Card>
-            <Button label='comprar' onClick={()=>{shop()}} />
-        </>
+            <Button className={Styles.button} label='COMPRAR' onClick={()=>{shop()}} />
+        </div>
     )
 }

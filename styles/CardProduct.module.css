@@ -5,6 +5,7 @@
 }
 
 .card {
+    color: var(--violet);
     margin-bottom: var(--margin);
     border-radius: 10px;
     border: 8px solid var(--white);
@@ -20,6 +21,18 @@
 }
 
 .title {
-    font: var(--text-body);
+    font: var(--text-display);
     text-align: center;
+}
+
+.card p {
+    margin-right: 20px;
+    text-align: right;
+    font: var(--text-body);
+}
+
+.button {
+    font: var(--text-body);
+    box-shadow: var(--shadow-big);
+    margin-right: var(--margin-right);
 }

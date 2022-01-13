@@ -11,7 +11,7 @@
     --text-body: bold 18px 'Roboto'; 
     --text-light: 14px 'Roboto'; 
 
-    --shadow-samll: 4px 4px 0 var(--violet);
+    --shadow-small: 4px 4px 0 var(--violet);
     --shadow-big: 8px 8px 0 var(--violet);
 
     --margin: 40px;

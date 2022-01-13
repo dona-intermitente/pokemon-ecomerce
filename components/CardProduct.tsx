@@ -23,9 +23,9 @@ export default function CardProduct({ name, image, price, quantity, id, favorite
 	)
 
 	return (
-		<Card className={Styles.card} header={<HeaderCard />}>
+		<Card className={Styles.card} header={<HeaderCard/>}>
 			<MyFavorite pokemonId={id} favorite_id={favorite_id} onChange={onChange}/>
-			<p className={Styles.title}>{name} {price}$</p>
+			<h1 className={Styles.title}>{name} {price}$</h1>
 		</Card>
 	)
 }

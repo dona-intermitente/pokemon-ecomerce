@@ -1,6 +1,7 @@
 import React from 'react';
 import CardProduct from './CardProduct';
 import Styles from '../styles/CardProduct.module.css'
+import Header from './Header';
 
 export default function Catalogue({ data, onChange }: any) {
 	const cards = data.map((item: any, index: number) =>
