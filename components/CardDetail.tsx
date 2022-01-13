@@ -1,14 +1,13 @@
 import React from 'react';
-import { Image } from 'primereact/image'
-import { Card } from 'primereact/card';
-import MyFavorite from './MyFavorite';
-import Styles from '../styles/CardProduct.module.css'
-import { useQuery } from '@apollo/client';
-import { POKEMON_TYPE } from '../query/pokemons';
-import { Button } from 'primereact/button';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useQuery } from '@apollo/client';
+import { Image } from 'primereact/image'
+import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
+import { POKEMON_TYPE } from '../query/pokemons';
+import MyFavorite from './MyFavorite';
+import Styles from '../styles/CardDetail.module.css'
 
 export default function CardDetail({ name, image, price, quantity, id }: any) {
 	const { data: session } = useSession()
@@ -31,7 +30,7 @@ export default function CardDetail({ name, image, price, quantity, id }: any) {
     const type = data?.pokemon.types[0].type.name
 
     return (
-        <div className={Styles.products}>
+        <div className={Styles.content}>
             <Card className={Styles.card} header={<HeaderCard />}>
                 <MyFavorite />
                 <h1 className={Styles.title}>{name} {price}$</h1>

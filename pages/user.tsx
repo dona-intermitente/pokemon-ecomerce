@@ -42,7 +42,7 @@ const User: NextPage = () => {
 
 	const category = options.map((category:any) => {
 		return (
-			<div key={category.key} className="p-field-radiobutton">
+			<div key={category.key} className={Styles.container + " p-field-radiobutton"}>
 				<RadioButton 
 					className={Styles.radio}
 					inputId={category.key}
@@ -56,12 +56,10 @@ const User: NextPage = () => {
 	})
 
 	const shop = shopping.map((item:any, index:any)=> (
-		<div className={StylesCard.products}>
-			<Card key={index} className={StylesCard.card} header={<Image alt="Card" src={item.image}/>}>
-				<MyFavorite pokemonId={item.id} favorite_id={item.favorite_id} onChange={()=>getFavorites()}/>
-				<h1 className={StylesCard.title}>{item.name} {item.price}$</h1>
-			</Card>
-		</div>
+		<Card key={index} className={StylesCard.card} header={<Image alt="Card" src={item.image}/>}>
+			<MyFavorite pokemonId={item.id} favorite_id={item.favorite_id} onChange={()=>getFavorites()}/>
+			<h1 className={StylesCard.title}>{item.name} {item.price}$</h1>
+		</Card>
 	))
 
 	return (
@@ -72,7 +70,7 @@ const User: NextPage = () => {
 			{
 				selectedCategory.name == 'MIS COMPRAS' ?
 				//<Catalogue data={shopping} onChange={()=>{}}/>
-				shop
+				<div className={StylesCard.products}>{shop}</div>
 				: <Catalogue data={favorites} onChange={()=>getFavorites()}/>
 			}
 		</>

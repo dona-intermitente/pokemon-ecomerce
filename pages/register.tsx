@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Link from 'next/link';
 import { Button } from 'primereact/button';
 import Form from '../components/Form';
-import Styles from '../styles/register.module.css'
+import Styles from '../styles/Register.module.css'
 
 const Register: NextPage = () => {
     const registerUser = async (event: any) => {

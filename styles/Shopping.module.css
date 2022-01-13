@@ -20,3 +20,11 @@
 .content input {
     margin-top: 20px;
 }
+
+@media (min-width: 600px) {
+    .content {
+        width: 50%;
+        margin: auto;
+        margin-top: 30px;
+    }
+}

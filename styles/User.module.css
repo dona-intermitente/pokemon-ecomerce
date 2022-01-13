@@ -10,7 +10,7 @@
 }
 
 .radio {
-    display: none;
+    /*display: none;*/
     font: var(--text-body);
     background-color: var(--blue);
 }

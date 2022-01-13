@@ -25,9 +25,8 @@ export default function MyFavorite({ pokemonId, favorite_id, onChange }: any) {
     return (
         <>
             {session &&
-                <>
+                <div className={Styles.star}>
                     <ToggleButton
-                        className={Styles.star}
                         checked={checked}
                         onChange={(e) => change(e)}
                         onIcon="pi pi-star-fill"
@@ -35,7 +34,7 @@ export default function MyFavorite({ pokemonId, favorite_id, onChange }: any) {
                         onLabel="" offLabel=""
                         id={pokemonId}
                     />
-                </>
+                </div>
 
             }
         </>

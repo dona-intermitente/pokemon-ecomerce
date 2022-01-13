@@ -1,15 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Card } from 'primereact/card';
+import { Image } from 'primereact/image';
 import MyFavorite from './MyFavorite';
 import Styles from '../styles/CardProduct.module.css'
 
-export default function CardProduct({ name, image, price, quantity, id, favorite_id, onChange }: any) {
-	const myLoader = () => {
-		return "/cuak.png"
-	}
-	
+export default function CardProduct({ name, image, price, quantity, id, favorite_id, onChange }: any) {	
 	const HeaderCard = () => (
 		<Link href={{
 			pathname: '/pokemon/[name]',
@@ -17,7 +13,7 @@ export default function CardProduct({ name, image, price, quantity, id, favorite
 		}}
 		>
 			<a>
-				<Image alt="Card" src={image} loader={myLoader} height={500} width={500} priority/>
+				<Image alt="Card" src="/cuak.png"/>
 			</a>
 		</Link>
 	)

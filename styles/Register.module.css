@@ -11,3 +11,11 @@
     box-shadow: var(--shadow-big);
     margin-right: var(--margin-right);
 }
+
+@media (min-width: 600px) {
+    .content {
+        width: 50%;
+        margin: auto;
+        margin-top: 30px;
+    }
+}
