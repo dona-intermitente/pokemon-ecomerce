@@ -3,7 +3,3 @@
     background-color: var(--pink);
     border-bottom: 8px solid var(--violet);
 }
-
-.cart {
-    box-shadow: var(--shadow-samll);
-}
